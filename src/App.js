@@ -20,8 +20,8 @@ const homeLatLng = {
 export default function App() {
 
   // State: Maps center. This can be set, or loaded from the users' Navigator.
-  // Future: Perhaps calculate optimal center based on current Markers
-  // Future: When multi-users, perhaps change the center when a new marker is added by another user
+  // TODO: (duckranger) Perhaps calculate optimal center based on current Markers
+  // TODO: (duckranger) When multi-users, perhaps change the center when a new marker is added by another user
   const [center, setCenter] = useState({});
 
   // Load the initial data required
