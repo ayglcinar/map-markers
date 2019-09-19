@@ -4,6 +4,8 @@ import React, {
 } from 'react';
 import Map from './containers/Map';
 import Header from './components/Header';
+import LoadingIndicator from './components/LoadingIndicator';
+
 import './styles/App.css';
 
 
@@ -40,8 +42,8 @@ export default function App() {
 
         // Success callback, when the Navigator reports the user location
         initMapPosition,
-        // Failure callback, will set the map center to SF
-        initMapPosition(homeLatLng)
+        // Failure callback, will set the map center to 'home'
+        () => initMapPosition(homeLatLng)
       );
     } else {
       initMapPosition(homeLatLng);
@@ -53,9 +55,15 @@ export default function App() {
     <React.Fragment>
       <Header text="Reshuffle Map Markers" />
       <div className="reshuffle-map-container">
-        <Map
-          center={center}
-        />
+        {
+          // Render map if location retrieved. Otherwise - display the loading message
+          center.lat ?
+            <Map
+              center={center}
+            />
+            :
+            <LoadingIndicator />
+        }
       </div>
     </React.Fragment>
   );

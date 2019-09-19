@@ -1,5 +1,5 @@
 import React from 'react';
-
+import LoadingIndicator from '../components/LoadingIndicator';
 import {
     GoogleMap,
     withScriptjs,
@@ -15,7 +15,7 @@ import {
 const Map = compose(
     withProps({
         googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",
-        loadingElement: <div style={{ height: '100%' }} />,
+        loadingElement: <LoadingIndicator />,
         containerElement: <div style={{ height: '100%' }} />,
         mapElement: <div style={{ height: '100%' }} />
 
