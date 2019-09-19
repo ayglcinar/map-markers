@@ -1,0 +1,11 @@
+.reshuffle-map-container {
+  width: 90vw;
+  height: 80vh;
+  margin:1vh auto;
+}
+
+@media only screen and (max-width: 600px) {
+  .reshuffle-map-container {
+    width: 100vw;
+  }
+}
