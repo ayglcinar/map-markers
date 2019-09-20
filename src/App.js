@@ -9,11 +9,11 @@ import LoadingIndicator from './components/LoadingIndicator';
 import './styles/App.css';
 
 
-// Use these co-ordinates to centre the map on San Francisco
+// Use these co-ordinates to center the map on San Francisco
 const homeLatLng = {
   coords: {
     latitude: 37.774929,
-    longitude: -122.419416
+    longitude: -122.419416,
   }
 }
 
@@ -53,8 +53,8 @@ export default function App() {
   // Render the UI
   return (
     <React.Fragment>
-      <Header text="Reshuffle Map Markers" />
-      <div className="reshuffle-map-container">
+      <Header text='Reshuffle Map Markers' />
+      <div className='reshuffle-map-container'>
         {
           // Render map if location retrieved. Otherwise - display the loading message
           center.lat ?
