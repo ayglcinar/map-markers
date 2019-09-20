@@ -6,6 +6,12 @@ import Map from './containers/Map';
 import Header from './components/Header';
 import LoadingIndicator from './components/LoadingIndicator';
 
+import '@reshuffle/code-transform/macro';
+import {
+  getMarkers,
+  saveMarker
+} from '../backend/markers';
+
 import './styles/App.css';
 
 
@@ -24,6 +30,9 @@ export default function App() {
   // TODO: (duckranger) When multi-users, perhaps change the center when a new marker is added by another user
   const [center, setCenter] = useState({});
 
+  // State: These are the markers stored in our db
+  const [markers, setMarkers] = useState(undefined);
+
   // Load the initial data required
   useEffect(() => {
 
@@ -31,7 +40,7 @@ export default function App() {
     function initMapPosition(position) {
       setCenter({
         lat: position.coords.latitude,
-        lng: position.coords.longitude
+        lng: position.coords.longitude,
       });
     }
 
@@ -48,7 +57,38 @@ export default function App() {
     } else {
       initMapPosition(homeLatLng);
     }
+
+    // Retrieves the markers stored in the database
+    async function getMarkersFromDB() {
+      try {
+        const data = await getMarkers();
+        setMarkers(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    // Upon page-load, the useEffect will load the markers
+    getMarkersFromDB();
   }, []);
+
+  // DB call: Place a new marker when the user clicks the map.
+  // @param { latLng } the latLng property of the click event from the map
+  async function placeMarker({ latLng }) {
+    try {
+      const result = await saveMarker({
+        lat: latLng.lat(),
+        lng: latLng.lng(),
+        uid: 0,
+      });
+      if (result.error) {
+        throw new Error(result.error);
+      }
+      setMarkers(result.markers);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   // Render the UI
   return (
@@ -60,6 +100,8 @@ export default function App() {
           center.lat ?
             <Map
               center={center}
+              markers={markers}
+              onClick={placeMarker}
             />
             :
             <LoadingIndicator />
