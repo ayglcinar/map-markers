@@ -1,5 +1,6 @@
 React Google-Maps application written with Reshuffle.
-This application displays a map on the screen.
+This application displays a map on the screen. It attempts to set the map's center to the user's browser location.
+It also lets the user click the map to add markers. These markers are persisted.
 
 Keywords: javascript, react, create-react-app, fullstack, google-maps, backend, map
 
