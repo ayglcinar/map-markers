@@ -8,6 +8,7 @@
     "@reshuffle/fetch-runtime": "0.0.5",
     "@reshuffle/local-proxy": "^0.2.6",
     "@reshuffle/server-function": "0.0.6",
+    "cross-env": "^6.0.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-google-maps": "^9.4.5",
