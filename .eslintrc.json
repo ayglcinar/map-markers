@@ -1,5 +1,6 @@
 {
     "extends": [
+<<<<<<< HEAD
       "react-app"
     ],
     "rules": {
@@ -11,3 +12,16 @@
       ]
     }
 }
+=======
+        "react-app"
+    ],
+    "rules": {
+        "no-unused-expressions": [
+            "warn",
+            {
+                "allowShortCircuit": false
+            }
+        ]
+    }
+}
+>>>>>>> eslint

@@ -25,3 +25,6 @@ yarn-error.log*
 # The following lines were added by Reshuffle
 .reshuffle*
 .env
+
+# vscode
+.vscode*
