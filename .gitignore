@@ -23,4 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 # The following line was added by Reshuffle
-.reshuffle*.env
+.reshuffle
+*.env
