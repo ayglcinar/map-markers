@@ -5,10 +5,12 @@ import {
     withScriptjs,
     withGoogleMap
 } from 'react-google-maps';
-import { 
-    compose, 
-    withProps 
+import {
+    compose,
+    withProps
 } from 'recompose';
+
+import MarkersList from './MarkersList';
 
 // Create a Map using react-google-maps
 // At this point: The map url below does not include a key, to prevent unauthorised use
@@ -23,10 +25,19 @@ const Map = compose(
     withScriptjs,
     withGoogleMap
 )(props => (
-    <GoogleMap 
-        defaultZoom={10} 
-        defaultCenter={props.center} 
-   />
+    <GoogleMap
+        defaultZoom={10}
+        defaultCenter={props.center}
+        onClick={props.onClick}
+    >
+        {
+            props.markers ?
+                <MarkersList markers={props.markers} />
+                :
+                null
+        }
+
+    </GoogleMap>
 ));
 
 export default Map;
