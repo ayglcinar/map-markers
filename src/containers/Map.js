@@ -1,13 +1,13 @@
 import React from 'react';
 import LoadingIndicator from '../components/LoadingIndicator';
 import {
-    GoogleMap,
-    withScriptjs,
-    withGoogleMap
+  GoogleMap,
+  withScriptjs,
+  withGoogleMap
 } from 'react-google-maps';
 import {
-    compose,
-    withProps
+  compose,
+  withProps
 } from 'recompose';
 
 import MarkersList from './MarkersList';
@@ -15,29 +15,25 @@ import MarkersList from './MarkersList';
 // Create a Map using react-google-maps
 // At this point: The map url below does not include a key, to prevent unauthorised use
 const Map = compose(
-    withProps({
-        googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",
-        loadingElement: <LoadingIndicator />,
-        containerElement: <div style={{ height: '100%' }} />,
-        mapElement: <div style={{ height: '100%' }} />
+  withProps({
+    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",
+    loadingElement: <LoadingIndicator />,
+    containerElement: <div style={{ height: '100%' }} />,
+    mapElement: <div style={{ height: '100%' }} />
 
-    }),
-    withScriptjs,
-    withGoogleMap
+  }),
+  withScriptjs,
+  withGoogleMap
 )(props => (
-    <GoogleMap
-        defaultZoom={10}
-        defaultCenter={props.center}
-        onClick={props.onClick}
-    >
-        {
-            props.markers ?
-                <MarkersList markers={props.markers} />
-                :
-                null
-        }
+  <GoogleMap {...props}>
+    {
+      props.markers ?
+        <MarkersList markers={props.markers} />
+        :
+        null
+    }
 
-    </GoogleMap>
+  </GoogleMap>
 ));
 
 export default Map;

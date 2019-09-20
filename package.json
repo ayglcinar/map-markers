@@ -17,10 +17,14 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint backend && stylelint src/**/*.css"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard"
   },
   "browserslist": {
     "production": [
@@ -33,5 +37,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "stylelint": "^10.1.0",
+    "stylelint-config-standard": "^18.3.0"
   }
 }
