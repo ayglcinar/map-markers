@@ -23,6 +23,9 @@ const homeLatLng = {
   }
 }
 
+// The iniital zoom setting for the map.
+const defaultZoom = 14;
+
 export default function App() {
 
   // State: Maps center. This can be set, or loaded from the users' Navigator.
@@ -72,14 +75,15 @@ export default function App() {
     getMarkersFromDB();
   }, []);
 
-  // DB call: Place a new marker when the user clicks the map.
-  // @param { latLng } the latLng property of the click event from the map
+  /**
+   * Place a new marker when the user clicks the map.
+   * @param { latLng } the latLng property of the click event from the map
+  */
   async function placeMarker({ latLng }) {
     try {
       const result = await saveMarker({
         lat: latLng.lat(),
         lng: latLng.lng(),
-        uid: 0,
       });
       if (result.error) {
         throw new Error(result.error);
@@ -99,9 +103,10 @@ export default function App() {
           // Render map if location retrieved. Otherwise - display the loading message
           center.lat ?
             <Map
-              center={center}
+              defaultCenter={center}
               markers={markers}
               onClick={placeMarker}
+              defaultZoom={defaultZoom}
             />
             :
             <LoadingIndicator />
