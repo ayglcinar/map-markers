@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Marker } from 'react-google-maps';
 
 export default function MarkersList({ markers }) {
