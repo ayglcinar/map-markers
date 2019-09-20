@@ -1,27 +1,13 @@
 {
-    "extends": [
-<<<<<<< HEAD
-      "react-app"
-    ],
-    "rules": {
-      "no-unused-expressions": [
-        "warn",
-        {
-          "allowShortCircuit": false
-        }
-      ]
-    }
+  "extends": [
+    "react-app"
+  ],
+  "rules": {
+    "no-unused-expressions": [
+      "warn",
+      {
+        "allowShortCircuit": false
+      }
+    ]
+  }
 }
-=======
-        "react-app"
-    ],
-    "rules": {
-        "no-unused-expressions": [
-            "warn",
-            {
-                "allowShortCircuit": false
-            }
-        ]
-    }
-}
->>>>>>> eslint
