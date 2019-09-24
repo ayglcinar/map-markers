@@ -40,7 +40,7 @@ export async function saveMarker({ lat, lng, uid }) {
   try {
     // Validate the uid for an existing marker, or create a new one
     // if the marker is brand new (denoted by a 0 uid)
-    const validUid = await validateOrCreateUID(uid);
+    const validUid = validateOrCreateUID(uid);
 
     // Update the markers in the db, adding the new one to the list
     const updatedMarkers = await update(markersKey, (markers = {}) => {
@@ -61,6 +61,6 @@ export async function saveMarker({ lat, lng, uid }) {
  * Validates that a uid exists. 
  * Creates a new one if the `undefined` was received.
 */
-async function validateOrCreateUID(uid) {
+function validateOrCreateUID(uid) {
   return uid || nanoid();
 }
