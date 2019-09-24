@@ -30,7 +30,11 @@ const Map = compose(
   <GoogleMap {...props}>
     {
       props.markers ?
-        <MarkersList markers={props.markers} />
+        <MarkersList
+          markers={props.markers}
+          setSelectedMarkerUid={props.setSelectedMarkerUid}
+          selectedMarkerUid={props.selectedMarkerUid}
+        />
         :
         null
     }

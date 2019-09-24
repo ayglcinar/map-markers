@@ -37,6 +37,11 @@ export default function App() {
   // State: These are the markers stored in our db
   const [markers, setMarkers] = useState(undefined);
 
+  // State: the selected marker.
+  // This is used to denote which of the markers displayed is the active one, 
+  // for purposes of actions (e.g. delete)
+  const [selectedMarkerUid, setSelectedMarkerUid] = useState(null);
+
   /**
    * Load the initial data required to setup a map on the screen.
    */
@@ -111,8 +116,10 @@ export default function App() {
             <Map
               defaultCenter={center}
               markers={markers}
-              onClick={placeMarker}
               defaultZoom={defaultZoom}
+              selectedMarkerUid={selectedMarkerUid}
+              setSelectedMarkerUid={setSelectedMarkerUid}
+              onClick={placeMarker}
             />
             :
             <LoadingIndicator />
