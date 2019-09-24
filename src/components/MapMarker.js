@@ -11,7 +11,6 @@ export default function MapMarker(props) {
       position={props.position}
       onClick={() => props.setSelectedMarkerUid(props.uid)}
     >
-
       {
         props.selected &&
         <InfoWindow>
