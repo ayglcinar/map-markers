@@ -2,9 +2,16 @@ import React, {
   useState,
   useEffect
 } from 'react';
+import '@reshuffle/code-transform/macro';
+
 import Map from './containers/Map';
 import Header from './components/Header';
 import LoadingIndicator from './components/LoadingIndicator';
+
+import {
+  getMarkers,
+  saveMarker
+} from '../backend/markers';
 
 import './styles/App.css';
 
@@ -17,6 +24,9 @@ const homeLatLng = {
   }
 }
 
+// The iniital zoom setting for the map.
+const defaultZoom = 14;
+
 export default function App() {
 
   // State: Maps center. This can be set, or loaded from the users' Navigator.
@@ -24,14 +34,20 @@ export default function App() {
   // TODO: (duckranger) When multi-users, perhaps change the center when a new marker is added by another user
   const [center, setCenter] = useState({});
 
-  // Load the initial data required
+  // State: These are the markers stored in our db
+  const [markers, setMarkers] = useState(undefined);
+
+  /**
+   * Load the initial data required to setup a map on the screen.
+   */
   useEffect(() => {
 
     // Sets the center of the map based on a position object
     function initMapPosition(position) {
+      const { coords } = position;
       setCenter({
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
+        lat: coords.latitude,
+        lng: coords.longitude,
       });
     }
 
@@ -48,9 +64,43 @@ export default function App() {
     } else {
       initMapPosition(homeLatLng);
     }
+
+    // Retrieves the markers stored in the database
+    async function getMarkersFromDB() {
+      try {
+        const data = await getMarkers();
+        setMarkers(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    // Upon page-load, the useEffect will load the markers
+    getMarkersFromDB();
   }, []);
 
-  // Render the UI
+  /**
+   * Place a new marker when the user clicks the map.
+   * @param { number } latLng - location coordinates received from the click event
+  */
+  async function placeMarker({ latLng }) {
+    try {
+      const result = await saveMarker({
+        lat: latLng.lat(),
+        lng: latLng.lng(),
+      });
+      if (result.error) {
+        throw new Error(result.error);
+      }
+      setMarkers(result.markers);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  /**
+   * Render the UI
+   */
   return (
     <React.Fragment>
       <Header text='Reshuffle Map Markers' />
@@ -59,7 +109,10 @@ export default function App() {
           // Render map if location retrieved. Otherwise - display the loading message
           center.lat ?
             <Map
-              center={center}
+              defaultCenter={center}
+              markers={markers}
+              onClick={placeMarker}
+              defaultZoom={defaultZoom}
             />
             :
             <LoadingIndicator />

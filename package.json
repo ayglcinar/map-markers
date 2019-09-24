@@ -20,6 +20,12 @@
     "eject": "react-scripts eject",
     "lint": "eslint backend && stylelint src/**/*.css"
   },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -32,13 +38,11 @@
       "last 1 safari version"
     ]
   },
+  "license": "MIT",
   "devDependencies": {
     "cross-env": "^5.2.0",
     "eslint": "^6.4.0",
     "stylelint": "^10.1.0",
     "stylelint-config-standard": "^18.3.0"
-  },
-  "stylelint": {
-    "extends": "stylelint-config-standard"
   }
 }
