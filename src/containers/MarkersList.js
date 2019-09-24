@@ -1,14 +1,17 @@
 import React from 'react';
-import { Marker } from 'react-google-maps';
+import MapMarker from '../components/MapMarker';
 
-export default function MarkersList({ markers }) {
-  const markersOnMap = Object.keys(markers).map(key =>
-    <Marker
+export default function MarkersList(props) {
+  const markersOnMap = Object.entries(props.markers).map(([key, marker]) =>
+    <MapMarker
       key={key}
+      uid={key}
       position={{
-        lat: markers[key].lat,
-        lng: markers[key].lng,
+        lat: marker.lat,
+        lng: marker.lng,
       }}
+      selected={key === props.selectedMarkerUid}
+      setSelectedMarkerUid={props.setSelectedMarkerUid}
     />
   );
 

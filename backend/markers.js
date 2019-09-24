@@ -1,5 +1,5 @@
 import { get, update } from '@reshuffle/db';
-
+import nanoid from 'nanoid';
 /**
  * Expose a database interface for CRUD operations on map markers.
  * 
@@ -40,7 +40,7 @@ export async function saveMarker({ lat, lng, uid }) {
   try {
     // Validate the uid for an existing marker, or create a new one
     // if the marker is brand new (denoted by a 0 uid)
-    const validUid = await validateOrCreateUID(uid);
+    const validUid = validateOrCreateUID(uid);
 
     // Update the markers in the db, adding the new one to the list
     const updatedMarkers = await update(markersKey, (markers = {}) => {
@@ -58,14 +58,9 @@ export async function saveMarker({ lat, lng, uid }) {
 }
 
 /** 
- * Validates the uid, or creates a new one if the uid passed in is undefined.
- *
- * @param {number} uid - uid to validate. If undefined is passed in - a new 
- * uid will be returned. 
+ * Validates that a uid exists. 
+ * Creates a new one if the `undefined` was received.
 */
-async function validateOrCreateUID(uid) {
-  if (uid) {
-    return uid;
-  }
-  return update('lastAllocatedUid', (v = 0) => v + 1);
+function validateOrCreateUID(uid) {
+  return uid || nanoid();
 }
