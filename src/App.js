@@ -36,12 +36,22 @@ export default function App() {
 
   // State: These are the markers stored in our db
   const [markers, setMarkers] = useState(undefined);
-
+  
   // State: the selected marker.
   // This is used to denote which of the markers displayed is the active one, 
   // for purposes of actions (e.g. delete)
   const [selectedMarkerUid, setSelectedMarkerUid] = useState(null);
 
+  // Retrieves the markers stored in the database
+  async function getMarkersFromDB() {
+    try {
+      const data = await getMarkers();
+      setMarkers(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  
   /**
    * Load the initial data required to setup a map on the screen.
    */
@@ -68,16 +78,6 @@ export default function App() {
       );
     } else {
       initMapPosition(homeLatLng);
-    }
-
-    // Retrieves the markers stored in the database
-    async function getMarkersFromDB() {
-      try {
-        const data = await getMarkers();
-        setMarkers(data);
-      } catch (error) {
-        console.log(error);
-      }
     }
 
     // Upon page-load, the useEffect will load the markers
