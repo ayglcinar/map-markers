@@ -21,11 +21,11 @@
     "eject": "react-scripts eject",
     "lint": "eslint backend && stylelint src/**/*.css"
   },
-  "stylelint": {
-    "extends": "stylelint-config-standard"
-  },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard"
   },
   "browserslist": {
     "production": [
