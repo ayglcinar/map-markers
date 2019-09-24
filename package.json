@@ -8,7 +8,6 @@
     "@reshuffle/fetch-runtime": "0.0.5",
     "@reshuffle/local-proxy": "^0.2.8",
     "@reshuffle/server-function": "0.0.6",
-    "cross-env": "^6.0.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-google-maps": "^9.4.5",
@@ -41,6 +40,8 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "cross-env": "^5.2.0",
+    "eslint": "^6.4.0",
     "stylelint": "^10.1.0",
     "stylelint-config-standard": "^18.3.0"
   }
