@@ -3,6 +3,7 @@ import {
   Marker,
   InfoWindow
 } from 'react-google-maps'
+import FancyButton from '../components/FancyButton';
 
 export default function MapMarker(props) {
   return (
@@ -14,11 +15,7 @@ export default function MapMarker(props) {
       {
         props.selected &&
         <InfoWindow>
-          <div>
-            <button>
-              Delete
-            </button>
-          </div>
+          <FancyButton text='Delete' />
         </InfoWindow>
       }
     </Marker>
