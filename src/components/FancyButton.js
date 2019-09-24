@@ -4,8 +4,8 @@ import '../styles/FancyButton.css';
 export default function FancyButton({ text }) {
 
   return (
-    <div class="buttonContainer">
-      <button class="fancyButton" rel="nofollow noopener">
+    <div className="buttonContainer">
+      <button className="fancyButton">
         {text}
       </button>
     </div>
