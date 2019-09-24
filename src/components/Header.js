@@ -3,8 +3,8 @@ import '../styles/Header.css';
 
 export default function Header({ text }) {
   return (
-    <div className="titlecontainer">
+    <header>
       <h1>{text}</h1>
-    </div>
+    </header>
   );
 }
