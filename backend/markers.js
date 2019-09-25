@@ -70,7 +70,7 @@ export async function removeSingleMarker(uid) {
       delete allMarkers[uid];
       return allMarkers;
     });
-    return { markers: markers };
+    return { markers };
   } catch (error) {
     return { error: error.message }
   }
