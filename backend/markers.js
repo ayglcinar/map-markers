@@ -32,7 +32,7 @@ export async function getMarkers() {
  * 
  * @param {number} lat - map latitude where the marker is placed.
  * @param {number} lng - map longitude where the marker is placed.
- * @param {number} uid - uid of the marker to update or undefined if it's a new marker. 
+ * @param {string} uid - uid of the marker to update or undefined if it's a new marker. 
  * 
  */
 /* @expose */
@@ -54,6 +54,25 @@ export async function saveMarker({ lat, lng, uid }) {
     return { markers: updatedMarkers };
   } catch (error) {
     return { error: error.message };
+  }
+}
+
+/**
+ * Delete a single marker from the database.
+ * 
+ * @param {string} uid of the marker to delete
+ */
+/* @expose */
+export async function removeSingleMarker(uid) {
+  try {
+    const markers = await update('markers', (markers = {}) => {
+      const allMarkers = { ...markers };
+      delete allMarkers[uid];
+      return allMarkers;
+    });
+    return { markers: markers };
+  } catch (error) {
+    return { error: error.message }
   }
 }
 
