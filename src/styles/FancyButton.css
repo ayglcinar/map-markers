@@ -10,7 +10,7 @@
   border-radius: 6px;
   display: inline-block;
   transition: all 0.3s ease 0s;
-  outline:none;
+  outline: none;
 }
 
 .fancyButton:hover {
