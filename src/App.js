@@ -36,7 +36,7 @@ export default function App() {
 
   // State: These are the markers stored in our db
   const [markers, setMarkers] = useState(undefined);
-  
+
   // State: the selected marker.
   // This is used to denote which of the markers displayed is the active one, 
   // for purposes of actions (e.g. delete)
@@ -51,23 +51,20 @@ export default function App() {
       console.log(error);
     }
   }
-  
-  /**
-   * Load the initial data required to setup a map on the screen.
-   */
+
+  // Sets the center of the map based on a position object
+  function initMapPosition(position) {
+    const { coords } = position;
+    setCenter({
+      lat: coords.latitude,
+      lng: coords.longitude,
+    });
+  }
+
+  // Determine the map's default center.
   useEffect(() => {
 
-    // Sets the center of the map based on a position object
-    function initMapPosition(position) {
-      const { coords } = position;
-      setCenter({
-        lat: coords.latitude,
-        lng: coords.longitude,
-      });
-    }
-
-    // Center the map at the user's location. Default to SF if location 
-    // is unavailable
+    // Try centering the map at the user's location.
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
 
@@ -80,7 +77,10 @@ export default function App() {
       initMapPosition(homeLatLng);
     }
 
-    // Upon page-load, the useEffect will load the markers
+  }, []);
+
+  // Load the markers from the database.
+  useEffect(() => {
     getMarkersFromDB();
   }, []);
 
