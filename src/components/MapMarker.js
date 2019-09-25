@@ -14,8 +14,18 @@ export default function MapMarker(props) {
     >
       {
         props.selected &&
-        <InfoWindow>
-          <FancyButton text='Delete' />
+        <InfoWindow
+          onCloseClick={() => { props.setSelectedMarkerUid(null) }}
+        >
+          <FancyButton
+            text='Delete'
+            onClick={
+              () => {
+                props.setSelectedMarkerUid(null);
+                props.deleteMarker(props.uid);
+              }
+            }
+          />
         </InfoWindow>
       }
     </Marker>

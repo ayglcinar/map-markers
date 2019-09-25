@@ -35,6 +35,7 @@ const Map = compose(
           markers={props.markers}
           setSelectedMarkerUid={props.setSelectedMarkerUid}
           selectedMarkerUid={props.selectedMarkerUid}
+          deleteMarker={props.deleteMarker}
         />
         :
         null

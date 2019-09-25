@@ -12,6 +12,7 @@ export default function MarkersList(props) {
       }}
       selected={key === props.selectedMarkerUid}
       setSelectedMarkerUid={props.setSelectedMarkerUid}
+      deleteMarker={props.deleteMarker}
     />
   );
 

@@ -10,7 +10,8 @@ import LoadingIndicator from './components/LoadingIndicator';
 
 import {
   getMarkers,
-  saveMarker
+  saveMarker,
+  removeSingleMarker
 } from '../backend/markers';
 
 import './styles/App.css';
@@ -85,6 +86,22 @@ export default function App() {
   }, []);
 
   /**
+   * Delete a marker from the db
+   * @param {string} uid of the marker to delete
+   */
+  async function deleteMarker(uid) {
+    try {
+      const result = await removeSingleMarker(uid);
+      if (result.error) {
+        throw new Error(result.error);
+      }
+      setMarkers(result.markers);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  /**
    * Place a new marker when the user clicks the map.
    * @param { number } latLng - location coordinates received from the click event
   */
@@ -120,6 +137,7 @@ export default function App() {
               selectedMarkerUid={selectedMarkerUid}
               setSelectedMarkerUid={setSelectedMarkerUid}
               onClick={placeMarker}
+              deleteMarker={deleteMarker}
             />
             :
             <LoadingIndicator />
