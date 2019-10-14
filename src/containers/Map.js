@@ -15,7 +15,7 @@ import MarkersList from './MarkersList';
 const googleMapsKey = process.env.REACT_APP_GOOGLE_API_KEY || '';
 /**
  * Create a Map using react-google-maps. 
- * At this point: The map url below does not include a key, to prevent unauthorised use
+ * At this point: The map url below does not include a key, to prevent unauthorized use
  */
 const Map = compose(
   withProps({
