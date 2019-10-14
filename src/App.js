@@ -17,6 +17,7 @@ import {
 
 import './styles/App.css';
 
+const googleMapsKey = process.env.REACT_APP_GOOGLE_API_KEY || '';
 
 // Use these co-ordinates to center the map on San Francisco
 const homeLatLng = {
@@ -126,7 +127,7 @@ export default function App() {
    */
   return (
     <React.Fragment>
-      <ApiKeyNav/>
+      {googleMapsKey === '' && <ApiKeyNav />}
       <Header text='Reshuffle Map Markers' />
       <div className='reshuffle-map-container'>
         {
