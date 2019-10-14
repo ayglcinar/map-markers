@@ -8,8 +8,10 @@
     "@reshuffle/fetch-runtime": "0.0.5",
     "@reshuffle/local-proxy": "^0.2.12",
     "@reshuffle/server-function": "0.0.6",
+    "bootstrap": "^4.3.1",
     "nanoid": "^2.1.1",
     "react": "^16.9.0",
+    "react-bootstrap": "^1.0.0-beta.14",
     "react-dom": "^16.9.0",
     "react-google-maps": "^9.4.5",
     "react-scripts": "3.1.1"
