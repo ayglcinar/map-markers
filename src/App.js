@@ -7,6 +7,7 @@ import '@reshuffle/code-transform/macro';
 import Map from './containers/Map';
 import Header from './components/Header';
 import LoadingIndicator from './components/LoadingIndicator';
+import ApiKeyNav from './components/ApiKeyNav';
 
 import {
   getMarkers,
@@ -25,7 +26,7 @@ const homeLatLng = {
   }
 }
 
-// The iniital zoom setting for the map.
+// The initial zoom setting for the map.
 const defaultZoom = 14;
 
 export default function App() {
@@ -125,6 +126,7 @@ export default function App() {
    */
   return (
     <React.Fragment>
+      <ApiKeyNav/>
       <Header text='Reshuffle Map Markers' />
       <div className='reshuffle-map-container'>
         {
