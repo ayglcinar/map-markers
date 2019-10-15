@@ -89,7 +89,6 @@ export default function App() {
 
   /**
    * Delete a marker from the db
-   * @param {string} uid of the marker to delete
    */
   async function deleteMarker(uid) {
     try {
@@ -105,7 +104,6 @@ export default function App() {
 
   /**
    * Place a new marker when the user clicks the map.
-   * @param { number } latLng - location coordinates received from the click event
   */
   async function placeMarker({ latLng }) {
     try {

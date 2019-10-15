@@ -29,11 +29,6 @@ export async function getMarkers() {
  * 
  * The function receives a marker object to persist,
  * containing a uid, and lat/lng attributes as described below.
- * 
- * @param {number} lat - map latitude where the marker is placed.
- * @param {number} lng - map longitude where the marker is placed.
- * @param {string} uid - uid of the marker to update or undefined if it's a new marker. 
- * 
  */
 /* @expose */
 export async function saveMarker({ lat, lng, uid }) {
@@ -59,8 +54,6 @@ export async function saveMarker({ lat, lng, uid }) {
 
 /**
  * Delete a single marker from the database.
- * 
- * @param {string} uid of the marker to delete
  */
 /* @expose */
 export async function removeSingleMarker(uid) {
