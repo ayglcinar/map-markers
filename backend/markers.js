@@ -1,4 +1,4 @@
-import { get, update } from '@reshuffle/db';
+import { update, remove, find, Q } from '@reshuffle/db';
 import nanoid from 'nanoid';
 /**
  * Expose a database interface for CRUD operations on map markers.
@@ -14,14 +14,15 @@ import nanoid from 'nanoid';
 /**
  * Key used to store the map markers details in the database.
  */
-const markersKey = 'markers';
+const keyRoot = 'marker';
+const prefix = (k) => `${keyRoot}:${k}`;
 
 /** 
  * Retrieve all markers from database. 
 */
 /* @expose */
 export async function getMarkers() {
-  return (await get(markersKey)) || {};
+  return await find(Q.filter(Q.key.startsWith(keyRoot)));
 }
 
 /** 
@@ -34,19 +35,14 @@ export async function getMarkers() {
 export async function saveMarker({ lat, lng, uid }) {
   try {
     // Validate the uid for an existing marker, or create a new one
-    // if the marker is brand new (denoted by a 0 uid)
     const validUid = validateOrCreateUID(uid);
 
     // Update the markers in the db, adding the new one to the list
-    const updatedMarkers = await update(markersKey, (markers = {}) => {
-      const allMarkers = { ...markers };
-      allMarkers[validUid] = {
-        lat,
-        lng,
-      };
-      return allMarkers;
-    });
-    return { markers: updatedMarkers };
+    return await update(prefix(validUid), (marker) => ({
+      uid: validUid,
+      lat,
+      lng,
+    }));
   } catch (error) {
     return { error: error.message };
   }
@@ -57,16 +53,7 @@ export async function saveMarker({ lat, lng, uid }) {
  */
 /* @expose */
 export async function removeSingleMarker(uid) {
-  try {
-    const markers = await update('markers', (markers = {}) => {
-      const allMarkers = { ...markers };
-      delete allMarkers[uid];
-      return allMarkers;
-    });
-    return { markers };
-  } catch (error) {
-    return { error: error.message }
-  }
+  return await remove(prefix(uid));
 }
 
 /** 

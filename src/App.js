@@ -96,7 +96,7 @@ export default function App() {
       if (result.error) {
         throw new Error(result.error);
       }
-      setMarkers(result.markers);
+      getMarkersFromDB();
     } catch (error) {
       console.log(error);
     }
@@ -114,7 +114,7 @@ export default function App() {
       if (result.error) {
         throw new Error(result.error);
       }
-      setMarkers(result.markers);
+      getMarkersFromDB();
     } catch (error) {
       console.log(error);
     }

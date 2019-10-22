@@ -2,15 +2,16 @@ import React from 'react';
 import MapMarker from '../components/MapMarker';
 
 export default function MarkersList(props) {
+
   const markersOnMap = Object.entries(props.markers).map(([key, marker]) =>
     <MapMarker
       key={key}
-      uid={key}
+      uid={marker.value.uid}
       position={{
-        lat: marker.lat,
-        lng: marker.lng,
+        lat: marker.value.lat,
+        lng: marker.value.lng,
       }}
-      selected={key === props.selectedMarkerUid}
+      selected={marker.value.uid === props.selectedMarkerUid}
       setSelectedMarkerUid={props.setSelectedMarkerUid}
       deleteMarker={props.deleteMarker}
     />
